@@ -1,6 +1,6 @@
 /* styles/Panel.css */
 .Panel {
-  @apply bg-gray-900 mx-auto;
+  @apply bg-white mx-auto;
 }
 
 .PanelCharts {
@@ -12,11 +12,11 @@
 }
 
 .tdName {
-  @apply text-white font-bold;
+  @apply text-gray-900 font-bold;
 }
 
 .red {
-  @apply bg-red-600 text-white p-2 rounded;
+  @apply bg-primary-600 text-white p-2 rounded shadow-sm;
 }
 
 .black {
@@ -33,7 +33,7 @@
 }
 
 .Wet {
-  @apply text-yellow-400 font-bold;
+  @apply text-primary-600 font-bold;
 }
 
 table {
@@ -41,22 +41,22 @@ table {
 }
 
 thead th {
-  @apply text-white p-2 border border-gray-500;
+  @apply text-white p-2 border border-primary-200 bg-primary-600;
 }
 
 tbody td {
-  @apply text-center border border-gray-500;
+  @apply text-center border border-gray-300 text-gray-900;
 }
 
 /* New styles for the icon button */
 .fixed-button {
-  @apply fixed bottom-10 right-10 text-white p-3 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50;
+  @apply fixed bottom-10 right-10 text-white p-3 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50;
   z-index: 1000;
-  background-color: #1f1d23
+  background-color: #F97316
 }
 
 .fixed-button:hover {
-  background-color: #201e22
+  background-color: #EA580C
 }
 
 .icon-size {

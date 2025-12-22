@@ -30,10 +30,23 @@ const Footer = () => {
       const response = await axios.get(
         `https://api.ratanmatkas.com/api/v1/public/link`
       );
-      console.log(response.data);
-      setData(response.data);
+      console.log("Footer component API response:", response.data);
+      if (response.data) {
+        setData({
+          webtoggle: Boolean(response.data.webtoggle ?? false),
+          app_link: response.data.app_link || "https://google.com",
+          whatsapp: response.data.whatsapp || "9887685099",
+          mobile: response.data.mobile || "9887685099",
+          telegram: response.data.telegram || "milanprime50",
+          email_1: response.data.email_1 || "-",
+          email_2: response.data.email_2 || "-",
+          web_app_link: response.data.web_app_link || "https://ratanmatkas.com",
+          twitter: response.data.twitter || "",
+        });
+      }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching data in Footer component:", error);
+      // Keep default state on error
     }
   };
 
@@ -41,14 +54,14 @@ const Footer = () => {
     fetchData();
   }, []);
   return (
-    <footer className="bg-gray-900 py-16">
+    <footer className="bg-gradient-to-b from-gray-50 to-white py-16 border-t-2 border-primary-200">
       <div className="mx-auto w-5/6 md:pb-10 pb-0">
         <HText>
-          <span className="text-primary-100">Find</span> us in
+          <span className="text-primary-600">Find</span> us in
         </HText>
         <div className="gap-4 sm:flex my-5">
           <a
-            className="flex gap-3 justify-center items-center rounded-md bg-primary-300 px-10 py-2 cursor-pointer transition duration-500 hover:bg-primary-500 hover:text-white mb-4"
+            className="flex gap-3 justify-center items-center rounded-md bg-primary-500 text-white px-10 py-2 cursor-pointer transition duration-500 hover:bg-primary-600 shadow-md hover:shadow-lg font-semibold mb-4"
             href={`https://wa.me/${data?.whatsapp}`}
             target="_blank"
           >
@@ -56,7 +69,7 @@ const Footer = () => {
             <ArrowTopRightOnSquareIcon className="w-5 h-5" />
           </a>
           <a
-            className="flex gap-3 justify-center items-center rounded-md bg-primary-300 px-10 py-2 cursor-pointer transition duration-500 hover:bg-primary-500 hover:text-white mb-4"
+            className="flex gap-3 justify-center items-center rounded-md bg-primary-500 text-white px-10 py-2 cursor-pointer transition duration-500 hover:bg-primary-600 shadow-md hover:shadow-lg font-semibold mb-4"
             href={`https://t.me/${data?.telegram}`}
             target="_blank"
           >
@@ -64,7 +77,7 @@ const Footer = () => {
             <ArrowTopRightOnSquareIcon className="w-5 h-5" />
           </a>
           <a
-            className="flex gap-3 justify-center items-center rounded-md bg-primary-300 px-10 py-2 cursor-pointer transition duration-500 hover:bg-primary-500 hover:text-white mb-4"
+            className="flex gap-3 justify-center items-center rounded-md bg-primary-500 text-white px-10 py-2 cursor-pointer transition duration-500 hover:bg-primary-600 shadow-md hover:shadow-lg font-semibold mb-4"
             href={data?.twitter}
             target="_blank"
           >
@@ -77,7 +90,7 @@ const Footer = () => {
         <div className="mt-16 basis-1/2 md:mt-0">
           <Image alt="logo" src={Logo} className="h-5 w-auto" />
           {data?.webtoggle && (
-            <p className="my-5 text-gray-200">
+            <p className="my-5 text-gray-700">
               You Are Viewing This Site On Your Own Risk. We Are Not Responsible
               For Any Kind Of Froad. Gambling Is Banned In India. If You Are Not
               Satisfied With Our Terms You Should Quit This Site Right Now.
@@ -93,7 +106,7 @@ const Footer = () => {
           <Link
             href="/privacypolicy"
             title="Footer link"
-            className="hover:text-primary-100 transition duration-500"
+            className="hover:text-primary-600 transition duration-500 text-gray-700"
           >
             Privacy Policy
           </Link>
@@ -101,7 +114,7 @@ const Footer = () => {
             <Link
               href="/tramsandcondition"
               title="Footer link"
-              className="hover:text-primary-100 transition duration-500"
+              className="hover:text-primary-600 transition duration-500 text-gray-700"
             >
               Trams & Condition
             </Link>

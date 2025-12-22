@@ -1,9 +1,9 @@
-import Head from "next/head";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics, FacebookPixel } from "./components/analytics";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,6 +14,17 @@ export const metadata = {
   keywords:
     "RATAN MATKA, Satta Matka, Kalyan Matka, ratan matka, Satta King, Rajdhani Matka, Madhur Matka, Milan Day & Night, Mumbai Matka, Tara Matka, Satta Matka Games, Online Matka Results",
   author: "RATAN MATKA",
+  openGraph: {
+    title: "RATAN MATKA- Leading Satta Matka Platform",
+    description: "RATAN MATKA is one of the leading and most trusted websites in the satta matka industry.",
+    url: "https://www.ratanmatkas.com",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "RATAN MATKA- Leading Satta Matka Platform",
+    description: "RATAN MATKA is one of the leading and most trusted websites in the satta matka industry.",
+  },
 };
 
 export default function RootLayout({
@@ -23,27 +34,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Head>
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} />
-        <meta name="keywords" content={metadata.keywords} />
-        <meta name="author" content={metadata.author} />
-        <meta property="og:title" content={metadata.title} />
-        <meta property="og:description" content={metadata.description} />
-        <meta property="og:image" content="URL_to_image" />{" "}
-        {/* Replace with actual URL to an image representing Kalyan Jackpot */}
-        <meta property="og:url" content="https://www.ratanmatkas.com" />{" "}
-        {/* Replace with the actual URL of the website */}
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={metadata.title} />
-        <meta name="twitter:description" content={metadata.description} />
-        <meta name="twitter:image" content="URL_to_image" />{" "}
-        {/* Replace with actual URL to an image representing Kalyan Jackpot */}
-        <meta name="twitter:url" content="https://www.ratanmatkas.com" />{" "}
-        {/* Replace with the actual URL of the website */}
+      <body
+        className={`bg-gradient-to-b from-secondary-100 to-white ${inter.className}`}
+        style={{ scrollBehavior: "smooth" }}
+      >
+        {children}
         {/* Meta Pixel Code */}
-        <script
+        <Script
+          id="facebook-pixel"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               !function(f,b,e,v,n,t,s)
@@ -68,12 +67,6 @@ export default function RootLayout({
             alt=""
           />
         </noscript>
-      </Head>
-      <body
-        className={`bg-gray-900 ${inter.className}`}
-        style={{ scrollBehavior: "smooth" }}
-      >
-        {children}
         <Analytics />
         <SpeedInsights />
         <GoogleAnalytics

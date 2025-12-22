@@ -75,10 +75,15 @@ const HowToPlay: React.FC<Props> = ({ setSelectedPage }: Props) => {
       const response = await axios.get(
         `https://api.ratanmatkas.com/api/v1/public/link`
       );
-      console.log(response.data);
-      setData(response.data);
+      console.log("HowToPlay component API response:", response.data);
+      if (response.data) {
+        setData({
+          webtoggle: Boolean(response.data.webtoggle ?? false),
+        });
+      }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching data in HowToPlay component:", error);
+      // Keep default state on error
     }
   };
 
@@ -89,7 +94,7 @@ const HowToPlay: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const selectedCategory = data.webtoggle ? category : category_quiz;
 
   return (
-    <section id="howtoplay" className="w-full bg-gray-800 pt-24 pb-32">
+    <section id="howtoplay" className="w-full bg-gradient-to-b from-secondary-100 via-white to-primary-50 pt-24 pb-32">
       <motion.div
         onViewportEnter={() => setSelectedPage(SelectedPageEnum.Services)}
       >
@@ -106,13 +111,15 @@ const HowToPlay: React.FC<Props> = ({ setSelectedPage }: Props) => {
         >
           <div className="md:w-3/5">
             <HText>
-              HOW TO<span className="text-primary-100"> PLAY?</span>
+              HOW TO<span className="text-primary-600"> PLAY?</span>
             </HText>
-            <p className="py-5">Find out How to play that amazing Quiz Game</p>
+            <p className="py-5 text-gray-700 text-lg max-w-2xl">
+              Follow these simple steps to get started and begin your winning journey today! 🚀
+            </p>
           </div>
         </motion.div>
         <div className="mt-10 mx-auto h-auto w-5/6">
-          <ul className="flex flex-wrap justify-center gap-1">
+          <ul className="flex flex-wrap justify-center gap-6 md:gap-8">
             {selectedCategory.map((item: ServiceType, index) => (
               <ServiceItem
                 key={`${item.name}-${index}`}

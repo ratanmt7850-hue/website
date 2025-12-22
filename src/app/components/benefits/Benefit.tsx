@@ -22,7 +22,7 @@ const Benefit: React.FC<Props> = ({
   return (
     <motion.div
       variants={childVariant}
-      className="relative z-0 mt-5 rounded-xl bg-primary-100 px-5 py-16 text-center"
+      className="relative z-0 mt-5 rounded-xl bg-primary-50 border border-primary-200 px-5 py-16 text-center shadow-md hover:shadow-lg transition-shadow"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +38,7 @@ const Benefit: React.FC<Props> = ({
         </g>
       </svg>
       <div className="mb-4 flex justify-center">
-        <div className="rounded-full border-2 border-gray-900 bg-secondary-400 p-4">
+        <div className="rounded-full border-2 border-primary-500 bg-primary-500 p-4">
           {icon}
         </div>
       </div>
@@ -50,7 +50,7 @@ const Benefit: React.FC<Props> = ({
         onClick={() => setSelectedPage(SelectedPageEnum.ContactUs)}
         href={`#${SelectedPageEnum.ContactUs}`}
       >
-        <span className="text-gray-800 hover:text-secondary-400 transition duration-500">
+        <span className="text-gray-800 hover:text-primary-600 transition duration-500">
           Learn More
         </span>
       </a>

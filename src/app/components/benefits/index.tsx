@@ -60,7 +60,7 @@ const Benefits: React.FC<Props> = ({ setSelectedPage }) => {
                         visible: { opacity: 1, x: 0 },
                     }}
                 >
-                    <HText>MORE THAN JUST <span className="text-primary-100">SERVICES</span></HText>
+                    <HText>MORE THAN JUST <span className="text-primary-600">SERVICES</span></HText>
                     <p className="my-5 text-sm">
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore animi molestias excepturi quibusdam iure temporibus saepe tenetur sunt ea suscipit aliqui.
                     </p>
@@ -110,7 +110,7 @@ const Benefits: React.FC<Props> = ({ setSelectedPage }) => {
                                 </svg>
                                 <HText>
                                     MILLIONS OF HAPPY MEMBERS GETTING{" "}
-                                    <span className="text-primary-100">QUALITY SERVICES</span>
+                                    <span className="text-primary-600">QUALITY SERVICES</span>
                                 </HText>
                             </motion.div>
                         </div>

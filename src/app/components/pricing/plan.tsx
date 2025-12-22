@@ -26,7 +26,7 @@ const Plan = ({ name, price, items, recomm }: Props) => {
         </h3>
         <span
           className={`text-4xl font-bold font-heading ${
-            recomm ? "text-primary-100" : "text-secondary-100"
+            recomm ? "text-primary-600" : "text-gray-700"
           }`}
         >
           {price}
@@ -60,8 +60,8 @@ const Plan = ({ name, price, items, recomm }: Props) => {
           <a
             className={`block py-4 px-6 text-xs text-white text-center font-semibold leading-none rounded transition-all ${
               recomm
-                ? "bg-primary-300 hover:bg-primary-500"
-                : "bg-transparent hover:bg-gray-900"
+                ? "bg-primary-500 hover:bg-primary-600"
+                : "bg-transparent hover:bg-primary-600 hover:text-white"
             }`}
             href="#"
           >

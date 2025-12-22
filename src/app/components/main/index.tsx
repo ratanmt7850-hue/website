@@ -28,25 +28,36 @@ const Main: React.FC<Props> = ({ setSelectedPage }: Props) => {
       const response = await axios.get(
         `https://api.ratanmatkas.com/api/v1/public/link`
       );
-      console.log(response.data);
-      setData(response.data);
+      console.log("Main component API response:", response.data);
+      if (response.data) {
+        setData({
+          webtoggle: Boolean(response.data.webtoggle ?? false),
+          web_app_link: response.data.web_app_link || "",
+          app_link: response.data.app_link || "",
+        });
+      }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching data in Main component:", error);
+      // Keep default state on error
     }
   };
 
   useEffect(() => {
     fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <section id="home" className="gap-16 bg-gray-900 py-10 md:h-full md:pb-0">
+    <section id="home" className="gap-16 bg-gradient-to-b from-primary-50 via-white to-secondary-100 py-12 md:h-full md:pb-0 relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute top-20 right-10 w-72 h-72 bg-primary-100 rounded-full blur-3xl opacity-20" style={{ zIndex: 0 }}></div>
+      <div className="absolute bottom-40 left-10 w-96 h-96 bg-secondary-200 rounded-full blur-3xl opacity-15" style={{ zIndex: 0 }}></div>
       {/* Image and main header */}
       <motion.div
         className="mx-auto w-5/6 items-center justify-center md:flex md:h-[480px]"
         onViewportEnter={() => setSelectedPage(SelectedPageEnum.Home)}
       >
         {/* Main header */}
-        <div className="z-10 mt-32 md:basis-3/5">
+        <div className="relative z-10 mt-32 md:basis-3/5">
           {/* Headings */}
           <motion.div
             className="md:-mt-20"
@@ -61,23 +72,29 @@ const Main: React.FC<Props> = ({ setSelectedPage }: Props) => {
           >
             <div className="relative">
               <Image
-                className="absolute w-full scale-150 top-[-6rem] left-[-6rem] z-[-1] opacity-80"
+                className="absolute w-full scale-150 top-[-6rem] left-[-6rem] opacity-60"
                 src={backgroundSparkles}
                 alt={"background sparkles img"}
+                style={{ zIndex: 0 }}
               />
               <div className="flex flex-col justify-center">
-                <Image src={HomePageText} alt="Home page text" />
-                <span className="text-primary-100 font-light text-[2rem] leading-[4rem]">
+                <div className="drop-shadow-lg">
+                  <Image src={HomePageText} alt="Home page text" className="w-full h-auto" />
+                </div>
+                <span className="text-primary-600 font-semibold text-2xl md:text-3xl leading-relaxed mt-4 block">
                   {data?.webtoggle
-                    ? `Best Online Matka App!`
-                    : `Best Online Quiz App!`}
+                    ? `Your Trusted Matka Gaming Platform 🎲`
+                    : `Challenge Your Knowledge & Win Big! 🏆`}
                 </span>
               </div>
             </div>
             {data?.webtoggle && (
-              <h1 className="mt-8 text-lg font-regular">
-                PLAY UP TO LAKH DAILY WITH ratanmatkas
-              </h1>
+              <div className="mt-6 inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full shadow-md border border-primary-200">
+                <span className="text-primary-600 font-bold text-lg">💰</span>
+                <h1 className="text-base md:text-lg font-semibold text-gray-800">
+                  Play & Win Up to Lakhs Daily!
+                </h1>
+              </div>
             )}
           </motion.div>
 
@@ -96,7 +113,7 @@ const Main: React.FC<Props> = ({ setSelectedPage }: Props) => {
             {data.webtoggle && (
               <a
                 target="_blank"
-                className="rounded-md bg-transparent border-solid border border-white px-6 py-2 cursor-pointer transition duration-500 hover:bg-gray-800"
+                className="rounded-md bg-primary-500 text-white px-6 py-2 cursor-pointer transition duration-500 hover:bg-primary-600 shadow-md hover:shadow-lg font-semibold"
                 href={data.web_app_link}
               >
                 Download Now
@@ -114,7 +131,7 @@ const Main: React.FC<Props> = ({ setSelectedPage }: Props) => {
         </div>
 
         {/* Image */}
-        <div className="relative flex basis-3/5 justify-center z-10 md:ml-40 md:mt-16 md:justify-items-end h-[280px] xs:h-[410px]">
+        <div className="relative flex basis-3/5 justify-center md:ml-40 md:mt-16 md:justify-items-end h-[280px] xs:h-[410px]" style={{ zIndex: 10 }}>
           <Image
             src={data.webtoggle ? HomePageGraphic : HomePageGraphicQuiz}
             alt="Home page graphic"
@@ -123,42 +140,75 @@ const Main: React.FC<Props> = ({ setSelectedPage }: Props) => {
         </div>
       </motion.div>
       {/* THE ESSENTIAL */}
-      <div className="bg-gray-800 py-12 sm:py-20 mx-4 md:mx-16 my-4 rounded-2xl">
-        <div className="md:flex flex-col items-center justify-center gap-4 mx-auto w-11/12 xl:w-5/6 h-full">
-          <HText className="w-full md:w-2/12 md:max-w-[200px] pb-12 md:p-0">
-            Introduction
-          </HText>
-          <div>
+      <div className="relative bg-gradient-to-r from-primary-50 via-white to-secondary-100 py-12 sm:py-20 mx-4 md:mx-16 my-8 rounded-3xl shadow-xl border-2 border-primary-200 overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary-100 rounded-full blur-3xl opacity-30 -mr-32 -mt-32"></div>
+        <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary-200 rounded-full blur-2xl opacity-20 -ml-24 -mb-24"></div>
+        
+        <div className="md:flex flex-col items-center justify-center gap-6 mx-auto w-11/12 xl:w-5/6 h-full relative z-10">
+          <div className="flex flex-col items-center mb-6">
+            <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary-500 to-transparent mb-4"></div>
+            <HText className="text-center">
+              <span className="text-primary-600">About</span> Us
+            </HText>
+            <div className="w-20 h-1 bg-gradient-to-r from-transparent via-primary-500 to-transparent mt-4"></div>
+          </div>
+          
+          <div className="w-full max-w-4xl space-y-6">
             {data.webtoggle ? (
-              <p className="py-2 text-justify">
-                Welcome to <strong>RATAN MATKA</strong>, where excitement and
-                entertainment come together in the thrilling world of Satta
-                Matka. We've created a platform that offers a dynamic experience
-                for users of all backgrounds, providing everything you need to
-                immerse yourself in this classic game of numbers and luck. At{" "}
-                <strong>RATAN MATKA</strong>, we are your trusted source for
-                accurate Matka results, expert guidance, and a wealth of
-                information on the biggest Matka markets, including Kalyan
-                Matka, Mumbai Matka, and more. Whether you're a seasoned player
-                or just starting, our platform has all the resources you need to
-                enhance your gameplay and increase your chances of success.
-              </p>
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-md border border-primary-100">
+                <p className="text-lg text-justify text-gray-800 leading-relaxed">
+                  Welcome to <strong className="text-primary-600">RATAN MATKA</strong>, your premier destination for 
+                  the ultimate Satta Matka gaming experience. We&apos;ve crafted a cutting-edge platform that combines 
+                  tradition with innovation, offering players an immersive journey into the world of numbers and 
+                  excitement. Our platform provides real-time results, comprehensive market analysis, and expert 
+                  insights for popular markets including <strong>Kalyan Matka</strong>, <strong>Mumbai Matka</strong>, 
+                  and many more.
+                </p>
+              </div>
             ) : (
-              <p className="py-2 text-justify">Habibi</p>
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-md border border-primary-100">
+                <p className="text-lg text-justify text-gray-800 leading-relaxed">
+                  Welcome to <strong className="text-primary-600">RATAN MATKA</strong>, where thrilling quiz games 
+                  meet exciting rewards. Challenge yourself with our diverse collection of quizzes and compete with 
+                  players from around the world.
+                </p>
+              </div>
             )}
 
-            <p className="py-2 text-justify">
-              Dive into the fascinating history of Satta Matka, which began in
-              the 1960s as a unique form of betting on cotton rates in Mumbai.
-              Over the years, it has evolved into a beloved numbers game, with
-              various markets like Kalyan Matka and Rajdhani Matka offering
-              different opportunities for players to test their luck.
-            </p>
-            <p className="py-2 text-justify">
-              Join us at RATAN MATKA, where every draw holds the potential for
-              fortune, and every game is an adventure waiting to unfold!
-            </p>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-gradient-to-br from-primary-50 to-white rounded-2xl p-6 shadow-md border border-primary-200">
+                <h3 className="text-xl font-bold text-primary-700 mb-3 flex items-center">
+                  <span className="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
+                  Rich Heritage
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  Discover the captivating history of Satta Matka, originating in the 1960s from Mumbai&apos;s cotton 
+                  trading markets. This iconic game has evolved into a beloved cultural phenomenon.
+                </p>
+              </div>
+              
+              <div className="bg-gradient-to-br from-secondary-100 to-white rounded-2xl p-6 shadow-md border border-primary-200">
+                <h3 className="text-xl font-bold text-primary-700 mb-3 flex items-center">
+                  <span className="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
+                  Multiple Markets
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  Explore various exciting markets like Kalyan Matka, Rajdhani Matka, and more. Each market offers 
+                  unique opportunities and different gameplay experiences.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-r from-primary-500 to-primary-600 rounded-2xl p-6 md:p-8 text-center shadow-lg">
+              <p className="text-white text-xl md:text-2xl font-semibold leading-relaxed">
+                Join thousands of players at <strong>RATAN MATKA</strong> — where every draw brings new possibilities 
+                and every game is a chance to win big! 🎯
+              </p>
+            </div>
           </div>
+        </div>
+      </div>
           {/* <div className="sm:flex items-center justify-between w-full md:w-10/12 h-full mx-auto pl-[20px] sm:pl-0">
             <div className="relative flex flex-col justify-center w-full xs:w-2/3 md:w-1/3 h-[120px] p-4 mx-auto rounded-xl border border-secondary-100 bg-secondary-100">
               <div className="absolute top-3 sm:top-[-20px] left-[-20px] sm:left-4 flex items-center justify-center w-10 h-10 border rounded-xl border-secondary-100 bg-gray-800">
@@ -233,8 +283,6 @@ const Main: React.FC<Props> = ({ setSelectedPage }: Props) => {
               </h2>
             </div>
           </div> */}
-        </div>
-      </div>
     </section>
   );
 };

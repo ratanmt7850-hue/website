@@ -18,9 +18,9 @@ const MyLink: React.FC<Props> = ({
   return (
     <Link
       className={`${
-        selectedPage === lowerCasePage ? "text-secondary-100" : "text-white"
+        selectedPage === lowerCasePage ? "text-primary-600 font-semibold" : "text-gray-700"
       }
-    transition duration-500 hover:text-primary-100 cursor-pointer
+    transition duration-500 hover:text-primary-600 cursor-pointer
     `}
       href={`#${lowerCasePage}`}
       onClick={() => setSelectedPage(lowerCasePage)}

@@ -22,7 +22,7 @@ const Navbar: React.FC<Props> = ({
   const flexBetween = "flex items-center justify-between";
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)");
-  const navbarBackground = isTopOfPage ? "" : "bg-gray-700 drop-shadow";
+  const navbarBackground = isTopOfPage ? "" : "bg-white/95 backdrop-blur-sm drop-shadow-md border-b border-primary-100";
   const hoverMyLinkColor = isTopOfPage
     ? "hover:text-secondary-300"
     : "hover:text-secondary-100";
@@ -38,10 +38,17 @@ const Navbar: React.FC<Props> = ({
       const response = await axios.get(
         `https://api.ratanmatkas.com/api/v1/public/link`
       );
-      console.log(response.data);
-      setData(response.data);
+      console.log("Navbar component API response:", response.data);
+      if (response.data) {
+        setData({
+          webtoggle: Boolean(response.data.webtoggle ?? false),
+          app_link: response.data.app_link || "",
+          web_app_link: response.data.web_app_link || "",
+        });
+      }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching data in Navbar component:", error);
+      // Keep default state on error
     }
   };
 
@@ -110,7 +117,7 @@ const Navbar: React.FC<Props> = ({
                   {data.webtoggle && (
                     <a
                       href={data.web_app_link}
-                      className="rounded-md bg-transparent border-solid border border-white px-6 py-2 cursor-pointer transition duration-500 hover:bg-gray-800"
+                      className="rounded-md bg-transparent border-solid border border-primary-500 px-6 py-2 cursor-pointer transition duration-500 hover:bg-primary-500 hover:text-white text-gray-900"
                     >
                       <span className="inline-block">Download Now</span>
                     </a>
@@ -126,13 +133,13 @@ const Navbar: React.FC<Props> = ({
                 </div>
               </div>
             ) : (
-              <motion.button
-                className="rounded-full bg-secondary-400 p-2"
-                whileTap={{ scale: 0.8 }}
-                onClick={() => setIsOpen(!isOpen)}
-              >
-                <Bars3Icon className="h-6 w-6 text-white" />
-              </motion.button>
+            <motion.button
+              className="rounded-full bg-primary-500 p-2"
+              whileTap={{ scale: 0.8 }}
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <Bars3Icon className="h-6 w-6 text-white" />
+            </motion.button>
             )}
           </div>
         </div>
@@ -140,7 +147,7 @@ const Navbar: React.FC<Props> = ({
       {/* Mobile menu modal */}
       {!isAboveMediumScreens && isOpen && (
         <motion.div
-          className="fixed bottom-0 right-0 top-0 z-50 w-[300px] bg-gray-800 drop-shadow-xl overflow-auto ..."
+          className="fixed bottom-0 right-0 top-0 z-50 w-[300px] bg-white drop-shadow-xl overflow-auto"
           initial="closed"
           whileInView="open"
           variants={{
@@ -169,7 +176,7 @@ const Navbar: React.FC<Props> = ({
               whileTap={{ scale: 0.8 }}
               onClick={() => setIsOpen(!isOpen)}
             >
-              <XMarkIcon className="w-6 h-6 text-white" />
+              <XMarkIcon className="w-6 h-6 text-gray-900" />
             </motion.button>
           </div>
           {/*Menu items*/}
@@ -225,7 +232,7 @@ const Navbar: React.FC<Props> = ({
               </a> */}
               <a
                 href={data?.app_link}
-                className="text-center rounded-md bg-transparent border-solid border border-white px-6 py-2 cursor-pointer transition duration-500 hover:bg-gray-700"
+                className="text-center rounded-md bg-transparent border-solid border border-primary-500 px-6 py-2 cursor-pointer transition duration-500 hover:bg-primary-500 hover:text-white text-gray-900"
               >
                 <span className="text-lg inline-block">Download Now</span>
                 <svg

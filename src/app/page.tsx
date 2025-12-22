@@ -29,15 +29,21 @@ export default function Home() {
       const response = await axios.get(
         `https://api.ratanmatkas.com/api/v1/public/link`
       );
-      console.log(response.data);
-      setData(response.data);
+      console.log("Page component API response:", response.data);
+      if (response.data) {
+        setData({
+          webtoggle: Boolean(response.data.webtoggle ?? false),
+        });
+      }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching data in Page component:", error);
+      // Keep default state on error
     }
   };
 
   useEffect(() => {
     fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -53,7 +59,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="bg-gray-900 max-w-[1600px] mx-auto">
+    <div className="bg-gradient-to-b from-secondary-100 to-white max-w-[1600px] mx-auto">
       <Navbar
         isTopOfPage={isTopOfPage}
         selectedPage={selectedPage}

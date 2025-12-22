@@ -77,7 +77,7 @@ const Pricing: React.FC<Props> = ({ setSelectedPage }: Props) => {
         <div className="mx-auto w-5/6">
           <div className="md:w-3/5">
             <HText>
-              CHOOSE YOUR<span className="text-primary-100"> BEST PLAN</span>
+              CHOOSE YOUR<span className="text-primary-600"> BEST PLAN</span>
             </HText>
             <p className="py-5">
               Fringilla a sed at suspendisse ut enim volutpat. Rhoncus vel est

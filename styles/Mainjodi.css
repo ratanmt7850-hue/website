@@ -2,8 +2,8 @@
 
 .Jodi {
     padding: 2rem;
-    background-color: #1a202c; /* Tailwind class: bg-gray-900 */
-    color: #edf2f7; /* Tailwind class: text-white */
+    background-color: #FFFFFF; /* Tailwind class: bg-white */
+    color: #212121; /* Tailwind class: text-gray-900 */
     max-width: 1600px;
     margin: auto; /* Tailwind class: mx-auto */
   }
@@ -21,19 +21,20 @@
   td {
     padding: 0.5rem; /* Tailwind class: p-2 */
     text-align: center;
-    border: 1px solid #2d3748; /* Tailwind class: border-gray-700 */
+    border: 1px solid #e0e0e0; /* Tailwind class: border-gray-200 */
   }
   
   th {
-    background-color: #2d3748; /* Tailwind class: bg-gray-700 */
+    background-color: #F97316; /* Tailwind class: bg-primary-600 */
+    color: #FFFFFF;
   }
   
   .red {
-    color: #e53e3e; /* Tailwind class: text-red-600 */
+    color: #EA580C; /* Tailwind class: text-primary-600 */
   }
   
   .black {
-    color: #a0aec0; /* Tailwind class: text-gray-400 */
+    color: #424242; /* Tailwind class: text-gray-700 */
   }
   
   .Wet {

@@ -14,8 +14,8 @@ type Props = {
 };
 
 const ContactUs: React.FC<Props> = ({ setSelectedPage }: Props) => {
-  const inputStyles = `mb-5 w-full rounded-lg bg-primary-100
-  px-5 py-3 placeholder-gray-900 placeholder:font-bold text-gray-900`;
+  const inputStyles = `mb-5 w-full rounded-lg bg-primary-50 border border-primary-200
+  px-5 py-3 placeholder-gray-600 placeholder:font-medium text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent`;
 
   const {
     register,
@@ -55,7 +55,7 @@ const ContactUs: React.FC<Props> = ({ setSelectedPage }: Props) => {
     }
   };
 
-  const [data, setData] = useState({
+  const [apiData, setApiData] = useState({
     webtoggle: false,
   });
 
@@ -64,10 +64,15 @@ const ContactUs: React.FC<Props> = ({ setSelectedPage }: Props) => {
       const response = await axios.get(
         `https://api.ratanmatkas.com/api/v1/public/link`
       );
-      console.log(response.data);
-      setData(response.data);
+      console.log("ContactUs component API response:", response.data);
+      if (response.data) {
+        setApiData({
+          webtoggle: Boolean(response.data.webtoggle ?? false),
+        });
+      }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching data in ContactUs component:", error);
+      // Keep default state on error
     }
   };
 
@@ -93,7 +98,7 @@ const ContactUs: React.FC<Props> = ({ setSelectedPage }: Props) => {
           }}
         >
           <HText>
-            <span className="text-primary-100">GOT A QUESTION? </span> CONTACT
+            <span className="text-primary-600">Need Help? </span> Get In Touch
             US NOW!
           </HText>
           {/* <p className="my-5">
@@ -170,7 +175,7 @@ const ContactUs: React.FC<Props> = ({ setSelectedPage }: Props) => {
 
               <button
                 type="submit"
-                className="mt-5 rounded-lg bg-secondary-400 hover:bg-secondary-300 px-10 py-3 transition duration-500 hover:text-white"
+                className="mt-5 rounded-lg bg-primary-500 hover:bg-primary-600 px-10 py-3 transition duration-500 text-white"
               >
                 SUBMIT
               </button>
@@ -195,16 +200,17 @@ const ContactUs: React.FC<Props> = ({ setSelectedPage }: Props) => {
             }}
           >
             <Image
-              className="w-full absolute bottom-20 right-10 z-[0]"
+              className="w-full absolute bottom-20 right-10 opacity-40"
               alt="background sparkles img"
               src={backgroundSparkles}
+              style={{ zIndex: 0 }}
             />
             <div className="w-full relative">
               <Image
                 className="max-w-sm 2xl:max-w-full w-full relative z-10 mx-auto object-contain"
                 alt="contact-us-page-graphic"
                 src={
-                  data?.webtoggle
+                  apiData?.webtoggle
                     ? ContactUsPageGraphic
                     : ContactUsPageGraphicQuiz
                 }

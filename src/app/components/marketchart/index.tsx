@@ -121,7 +121,7 @@ const MarketChart: React.FC<Props> = ({ setSelectedPage }: Props) => {
   ];
 
   return (
-    <section id="marketchart" className="w-full bg-gray-800 pt-24 pb-32">
+    <section id="marketchart" className="w-full bg-gradient-to-b from-white to-primary-50 pt-24 pb-32">
       <motion.div
         onViewportEnter={() => setSelectedPage(SelectedPageEnum.Services)}
       >
@@ -138,7 +138,7 @@ const MarketChart: React.FC<Props> = ({ setSelectedPage }: Props) => {
         >
           <div className="md:w-3/5 text-center">
             <HText>
-              Select<span className="text-primary-100"> Market</span>
+              Select<span className="text-primary-600"> Market</span>
             </HText>
           </div>
         </motion.div>
@@ -147,10 +147,10 @@ const MarketChart: React.FC<Props> = ({ setSelectedPage }: Props) => {
             {tabs.map((tab) => (
               <button
                 key={tab.id}
-                className={`px-4 py-2 font-semibold text-sm rounded-lg ${
+                className={`px-4 py-2 font-semibold text-sm rounded-lg transition-all ${
                   activeTab === tab.id
-                    ? "bg-primary-100 text-white"
-                    : "bg-gray-600 text-gray-300"
+                    ? "bg-primary-600 text-white shadow-md"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                 }`}
                 onClick={() => setActiveTab(tab.id)}
               >
@@ -158,13 +158,13 @@ const MarketChart: React.FC<Props> = ({ setSelectedPage }: Props) => {
               </button>
             ))}
           </div>
-          <div className="mt-8 p-4 bg-gray-700 rounded-lg text-white">
+          <div className="mt-8 p-4 bg-white rounded-lg text-gray-800 shadow-lg border border-primary-100">
             {loading ? (
               <div className="space-y-4">
                 {[...Array(25)].map((_, index) => (
                   <div
                     key={index}
-                    className="h-6 bg-gray-600 animate-pulse rounded"
+                    className="h-6 bg-gray-300 animate-pulse rounded"
                   ></div>
                 ))}
               </div>
@@ -173,7 +173,7 @@ const MarketChart: React.FC<Props> = ({ setSelectedPage }: Props) => {
                 {data.map((item: any) => (
                   <li
                     key={item.market_id}
-                    className="flex flex-col p-4 bg-gray-800 rounded-lg"
+                    className="flex flex-col p-4 bg-white rounded-lg border border-primary-100 shadow-md hover:shadow-lg transition-shadow"
                   >
                     <div className="flex flex-col justify-center items-center space-y-2">
                       <span className="font-bold">{item.title}</span>
@@ -181,7 +181,7 @@ const MarketChart: React.FC<Props> = ({ setSelectedPage }: Props) => {
                         <>
                           {activeTab === "main" && (
                             <>
-                              <span className="font-bold text-gray-400">
+                              <span className="font-bold text-gray-600">
                                 {item.open_panna === "-"
                                   ? "☆☆☆"
                                   : item.open_panna}{" "}
@@ -198,7 +198,7 @@ const MarketChart: React.FC<Props> = ({ setSelectedPage }: Props) => {
                                   : item.close_panna}
                               </span>
 
-                              <span className="text-gray-400">
+                              <span className="text-gray-600">
                                 Time: {item.open_time} - {item.close_time}
                               </span>
                             </>
@@ -206,7 +206,7 @@ const MarketChart: React.FC<Props> = ({ setSelectedPage }: Props) => {
 
                           {activeTab === "starline" && (
                             <>
-                              <span className="font-bold text-gray-400">
+                              <span className="font-bold text-gray-600">
                                 {item.open_panna === "-"
                                   ? "☆☆☆"
                                   : item.open_panna}{" "}
@@ -216,7 +216,7 @@ const MarketChart: React.FC<Props> = ({ setSelectedPage }: Props) => {
                                   : item.open_digit}
                               </span>
 
-                              <span className="text-gray-400">
+                              <span className="text-gray-600">
                                 Time: {item.open_time}
                               </span>
                             </>
@@ -224,7 +224,7 @@ const MarketChart: React.FC<Props> = ({ setSelectedPage }: Props) => {
 
                           {activeTab === "galidisawar" && (
                             <>
-                              <span className="font-bold text-gray-400">
+                              <span className="font-bold text-gray-600">
                                 {item.open_digit === "-"
                                   ? "☆"
                                   : item.open_digit}
@@ -232,7 +232,7 @@ const MarketChart: React.FC<Props> = ({ setSelectedPage }: Props) => {
                                   ? "☆"
                                   : item.close_digit}
                               </span>
-                              <span className="text-gray-400">
+                              <span className="text-gray-600">
                                 Time: {item.close_time}
                               </span>
                             </>
@@ -242,7 +242,7 @@ const MarketChart: React.FC<Props> = ({ setSelectedPage }: Props) => {
                         <span className="text-red-500 font-bold">Holiday</span>
                       )}
                     </div>
-                    <div className="text-gray-400 mt-2">
+                    <div className="text-gray-600 mt-2">
                       {item.status ? "Open" : "Closed"}
                     </div>
                     <a
@@ -255,14 +255,14 @@ const MarketChart: React.FC<Props> = ({ setSelectedPage }: Props) => {
                           ? `/disawar?id=${item.market_id}`
                           : ""
                       }
-                      className="mt-4 px-4 p-2 bg-primary-100 text-white font-semibold rounded-lg"
+                      className="mt-4 px-4 p-2 bg-primary-500 text-white font-semibold rounded-lg"
                     >
                       Panel
                     </a>
                     {activeTab === "main" && (
                       <a
                         href={`/disawar?id=${item.market_id}`}
-                        className="mt-4 px-4 p-2 bg-primary-100 text-white font-semibold rounded-lg"
+                        className="mt-4 px-4 p-2 bg-primary-500 text-white font-semibold rounded-lg"
                       >
                         Jodi
                       </a>
