@@ -1,0 +1,64 @@
+/* styles/Panel.css */
+.Panel {
+  @apply bg-gray-900 mx-auto;
+}
+
+.PanelCharts {
+  /* @apply overflow-x-auto; */
+}
+
+.Td {
+  @apply text-center p-4;
+}
+
+.tdName {
+  @apply text-white font-bold;
+}
+
+.red {
+  @apply bg-red-600 text-white p-2 rounded;
+}
+
+.black {
+  @apply bg-black text-white p-2 rounded;
+}
+
+.position {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+}
+
+.Wet {
+  @apply text-yellow-400 font-bold;
+}
+
+table {
+  @apply w-full border-collapse;
+}
+
+thead th {
+  @apply text-white p-2 border border-gray-500;
+}
+
+tbody td {
+  @apply text-center border border-gray-500;
+}
+
+/* New styles for the icon button */
+.fixed-button {
+  @apply fixed bottom-10 right-10 text-white p-3 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50;
+  z-index: 1000;
+  background-color: #1f1d23
+}
+
+.fixed-button:hover {
+  background-color: #201e22
+}
+
+.icon-size {
+  @apply h-6 w-6;
+}

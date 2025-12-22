@@ -1,0 +1,43 @@
+/* Mainjodi.css */
+
+.Jodi {
+    padding: 2rem;
+    background-color: #1a202c; /* Tailwind class: bg-gray-900 */
+    color: #edf2f7; /* Tailwind class: text-white */
+    max-width: 1600px;
+    margin: auto; /* Tailwind class: mx-auto */
+  }
+  
+  .MJodiCharts {
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th,
+  td {
+    padding: 0.5rem; /* Tailwind class: p-2 */
+    text-align: center;
+    border: 1px solid #2d3748; /* Tailwind class: border-gray-700 */
+  }
+  
+  th {
+    background-color: #2d3748; /* Tailwind class: bg-gray-700 */
+  }
+  
+  .red {
+    color: #e53e3e; /* Tailwind class: text-red-600 */
+  }
+  
+  .black {
+    color: #a0aec0; /* Tailwind class: text-gray-400 */
+  }
+  
+  .Wet {
+    font-weight: bold;
+    font-size: 1.25rem; /* Tailwind class: text-xl */
+  }
+  
