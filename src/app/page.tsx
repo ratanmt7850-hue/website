@@ -13,6 +13,7 @@ import ContactUs from "./components/contact-us";
 import Footer from "./components/footer";
 import Pricing from "./components/pricing";
 import Faqs from "./components/faqs";
+import WhatsAppFloat from "./components/whatsapp-float";
 
 export default function Home() {
   const [selectedPage, setSelectedPage] = useState<SelectedPageEnum>(
@@ -75,6 +76,7 @@ export default function Home() {
       {data.webtoggle && <Faqs setSelectedPage={setSelectedPage} />}
       <ContactUs setSelectedPage={setSelectedPage} />
       <Footer />
+      <WhatsAppFloat />
     </div>
   );
 }
